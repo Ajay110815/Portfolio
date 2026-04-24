@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajay Avaghade – Product Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-light: #112040;
+    --accent: #4F8EF7;
+    --accent2: #A78BFA;
+    --gold: #F59E0B;
+    --surface: #111C30;
+    --surface2: #182440;
+    --border: rgba(79,142,247,0.18);
+    --text: #E8EDF7;
+    --text-strong: #FFFFFF;
+    --muted: #94A8C7;
+    --tag-bg: rgba(79,142,247,0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,22,40,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 2rem; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 18px; color: var(--accent); cursor: pointer;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-link {
+    font-size: 14px; font-weight: 500;
+    color: var(--muted); cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--text-strong); }
+
+  /* ─── PAGES ───────────────────────────── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── HERO ────────────────────────────── */
+  .hero { padding: 120px 2rem 80px; max-width: 1100px; margin: 0 auto; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 13px; font-weight: 500; color: #93C5FD;
+    margin-bottom: 2rem;
+  }
+  .hero-badge span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #4ADE80; flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -1px; color: var(--text-strong);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #60A5FA, #C084FC);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 620px; line-height: 1.75; margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+  }
+  .metric {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+  }
+  .metric-val {
+    font-family: 'Syne', sans-serif; font-size: 1.65rem;
+    font-weight: 700; color: #60A5FA;
+  }
+  .metric-label {
+    font-size: 13px; color: var(--muted); margin-top: 5px; font-weight: 400;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none;
+    border-radius: 8px; padding: 12px 28px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: opacity 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    background: transparent; color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 28px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--text-strong); }
+
+  /* ─── SKILLS STRIP ────────────────────── */
+  .skills-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 0;
+  }
+  .skills-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 2rem;
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+  }
+  .skill-pill {
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 6px 14px;
+    font-size: 13px; font-weight: 500;
+    color: #93C5FD;
+  }
+
+  /* ─── DISCOVER / CASE GRID ────────────── */
+  .discover { padding: 80px 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-header { margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: 'Syne', sans-serif; font-size: 2rem;
+    font-weight: 700; color: var(--text-strong); margin-bottom: 0.5rem;
+  }
+  .section-header p { color: var(--muted); font-size: 1rem; }
+
+  .filter-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .filter-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--muted); border-radius: 100px; padding: 7px 18px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn:hover { color: var(--text); border-color: rgba(79,142,247,0.5); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 1.5rem;
+  }
+  .case-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden; cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .case-card:hover { transform: translateY(-4px); border-color: rgba(79,142,247,0.45); }
+
+  .case-img {
+    width: 100%; height: 160px;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-body { padding: 1.5rem; }
+
+  .case-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tag {
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 4px 12px;
+    font-size: 12px; font-weight: 500; color: #93C5FD;
+  }
+  .tag.impact {
+    background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.28);
+    color: #FCD34D;
+  }
+
+  .case-body h3 {
+    font-family: 'Syne', sans-serif; font-size: 1.05rem;
+    font-weight: 600; color: var(--text-strong);
+    margin-bottom: 0.6rem; line-height: 1.4;
+  }
+  .case-body p {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.7; margin-bottom: 1.25rem;
+  }
+
+  .case-metrics { display: flex; gap: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .case-metric { }
+  .case-metric-val {
+    font-family: 'Syne', sans-serif; font-size: 1.1rem;
+    font-weight: 700; color: #60A5FA;
+  }
+  .case-metric-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .btn-view {
+    width: 100%; background: transparent;
+    border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 10px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-view:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ─── DETAIL PAGE ─────────────────────── */
+  .detail-page { padding: 80px 2rem; max-width: 860px; margin: 0 auto; }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--muted); font-size: 14px; font-weight: 500;
+    cursor: pointer; margin-bottom: 2.5rem;
+    transition: color 0.2s; background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .back-btn:hover { color: var(--text-strong); }
+
+  .detail-hero-tag { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .detail-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 700; color: var(--text-strong);
+    line-height: 1.15; margin-bottom: 0.75rem; letter-spacing: -0.5px;
+  }
+  .detail-meta { color: var(--muted); font-size: 14px; margin-bottom: 2.5rem; }
+
+  .detail-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem; margin-bottom: 3.5rem;
+  }
+  .detail-metric {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem; text-align: center;
+  }
+  .detail-metric-val {
+    font-family: 'Syne', sans-serif; font-size: 1.55rem;
+    font-weight: 700; color: #60A5FA;
+  }
+  .detail-metric-label { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+  /* ─── FIGMA EMBED ─────────────────────── */
+  .figma-section { margin-bottom: 3.5rem; }
+  .figma-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
+  }
+  .figma-desc {
+    font-size: 14px; color: var(--muted); line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .figma-frame {
+    width: 100%; height: 480px;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; background: var(--surface);
+  }
+  .figma-frame iframe { width: 100%; height: 100%; border: none; }
+  .figma-open {
+    display: inline-block; margin-top: 0.6rem;
+    font-size: 13px; color: var(--accent); text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .figma-open:hover { opacity: 0.75; }
+
+  /* ─── STAR FRAMEWORK ──────────────────── */
+  .star-section { margin-bottom: 3.5rem; }
+  .star-header { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1.25rem; }
+  .star-icon { flex-shrink: 0; text-align: center; width: 52px; }
+  .star-letter {
+    font-family: 'Syne', sans-serif; font-size: 2.5rem;
+    font-weight: 700; line-height: 1;
+  }
+  .star-S { color: #60A5FA; }
+  .star-T { color: #C084FC; }
+  .star-A { color: #FBBF24; }
+  .star-R { color: #34D399; }
+  .star-word {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-top: 2px;
+  }
+  .star-S .star-word { color: #60A5FA; }
+  .star-T .star-word { color: #C084FC; }
+  .star-A .star-word { color: #FBBF24; }
+  .star-R .star-word { color: #34D399; }
+  .star-title {
+    font-family: 'Syne', sans-serif; font-size: 1.3rem;
+    font-weight: 600; color: var(--text-strong);
+    padding-top: 6px;
+  }
+  .star-content {
+    font-size: 15px; color: #B8CCEB;
+    line-height: 1.85; padding-left: 68px;
+  }
+  .star-content p { margin-bottom: 0.9rem; }
+  .star-content ul { padding-left: 1.35rem; }
+  .star-content li { margin-bottom: 0.7rem; color: #B8CCEB; }
+  .star-content strong { color: var(--text-strong); font-weight: 500; }
+  .star-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+  /* ─── ABOUT ───────────────────────────── */
+  .about { padding: 80px 2rem; max-width: 1100px; margin: 0 auto; }
+  .about-grid {
+    display: grid; grid-template-columns: 280px 1fr;
+    gap: 4rem; align-items: start;
+  }
+  @media (max-width: 680px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .about-avatar {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 2.25rem;
+    font-weight: 700; color: #fff; margin-bottom: 1.25rem;
+  }
+  .about-name {
+    font-family: 'Syne', sans-serif; font-size: 1.15rem;
+    font-weight: 600; color: var(--text-strong); margin-bottom: 4px;
+  }
+  .about-role { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
+  .about-contact-item { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+  .about-contact-item a { color: var(--accent); text-decoration: none; }
+
+  .about h2 {
+    font-family: 'Syne', sans-serif; font-size: 1.9rem;
+    font-weight: 700; color: var(--text-strong); margin-bottom: 1rem;
+  }
+  .about-bio {
+    font-size: 15px; color: #B8CCEB; line-height: 1.8; margin-bottom: 2.5rem;
+  }
+
+  .tl-item { display: flex; gap: 1.25rem; margin-bottom: 2rem; position: relative; }
+  .tl-item::before {
+    content: ''; position: absolute; left: 19px; top: 42px;
+    bottom: -16px; width: 1px; background: var(--border);
+  }
+  .tl-item:last-child::before { display: none; }
+  .tl-dot {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--surface2); border: 1px solid var(--border);
+    flex-shrink: 0; display: flex; align-items: center;
+    justify-content: center; font-size: 1rem;
+  }
+  .tl-content h4 {
+    font-family: 'Syne', sans-serif; font-size: 14px;
+    font-weight: 600; color: var(--text-strong); margin-bottom: 4px;
+  }
+  .tl-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ─── CONTACT ─────────────────────────── */
+  .contact { padding: 80px 2rem; max-width: 680px; margin: 0 auto; text-align: center; }
+  .contact h2 {
+    font-family: 'Syne', sans-serif; font-size: 2.25rem;
+    font-weight: 700; color: var(--text-strong); margin-bottom: 1rem;
+  }
+  .contact p { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 26px; border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); font-size: 14px;
+    font-weight: 500; text-decoration: none;
+    transition: all 0.2s; background: var(--surface); cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .contact-link:hover { border-color: var(--accent); background: var(--surface2); color: var(--text-strong); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">AA</div>
+    <div class="nav-links">
+      <div class="nav-link active" id="nav-home" onclick="showPage('home')">Home</div>
+      <div class="nav-link" id="nav-discover" onclick="showPage('discover')">Case Studies</div>
+      <div class="nav-link" id="nav-about" onclick="showPage('about')">About</div>
+      <div class="nav-link" id="nav-contact" onclick="showPage('contact')">Contact</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-badge"><span></span>Product Manager · PhonePe · Bangalore</div>
+    <h1>Ajay Avaghade<br><em>builds products</em> that scale.</h1>
+    <p class="hero-sub">4 years scaling FinTech at India's leading payments ecosystem. From checkout conversions to merchant acquisition — I ship with data, design with intent, and measure everything.</p>
+    <div class="hero-metrics">
+      <div class="metric"><div class="metric-val">₹100 Cr</div><div class="metric-label">Monetization portfolio managed</div></div>
+      <div class="metric"><div class="metric-val">30%</div><div class="metric-label">Checkout conversion uplift</div></div>
+      <div class="metric"><div class="metric-val">5000+</div><div class="metric-label">Merchants acquired</div></div>
+      <div class="metric"><div class="metric-val">32%</div><div class="metric-label">Marketing burn reduced</div></div>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showPage('discover')">View Case Studies</button>
+      <button class="btn-ghost" onclick="showPage('about')">About Me</button>
+    </div>
+  </div>
+  <div class="skills-strip">
+    <div class="skills-inner">
+      <div class="skill-pill">Cross-Functional Leadership</div>
+      <div class="skill-pill">Data-Driven Product Strategy</div>
+      <div class="skill-pill">ML &amp; Personalization</div>
+      <div class="skill-pill">Monetization &amp; P&amp;L</div>
+      <div class="skill-pill">Platform Architecture</div>
+      <div class="skill-pill">SQL</div>
+      <div class="skill-pill">Figma</div>
+      <div class="skill-pill">JIRA</div>
+      <div class="skill-pill">Appsflyer</div>
+      <div class="skill-pill">FinTech · Payments · Quick Commerce</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DISCOVER ═══════════ -->
+<div class="page" id="page-discover">
+  <div class="discover">
+    <div class="section-header">
+      <h2>Case Studies</h2>
+      <p>Deep-dives into the products I've built — from 0→1 launches to platform-scale revamps.</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCases('all',this)">All</button>
+      <button class="filter-btn" onclick="filterCases('consumer',this)">Consumer</button>
+      <button class="filter-btn" onclick="filterCases('b2b',this)">B2B / Merchant</button>
+      <button class="filter-btn" onclick="filterCases('growth',this)">Growth</button>
+    </div>
+    <div class="cases-grid" id="cases-grid">
+
+      <div class="case-card" data-cat="b2b" onclick="showDetail('emi')">
+        <div class="case-img">💳</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">B2B</span><span class="tag">Payment Gateway</span><span class="tag impact">5000+ Merchants</span></div>
+          <h3>EMI Subvention – Merchant Financing at Checkout</h3>
+          <p>Launched zero-cost EMI subvention capabilities enabling merchants to offer bank-funded installment plans, directly driving merchant acquisition at scale.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="case-metric-val">5000+</div><div class="case-metric-label">Merchants acquired</div></div>
+            <div class="case-metric"><div class="case-metric-val">30 min</div><div class="case-metric-label">Offer go-live TAT</div></div>
+          </div>
+          <button class="btn-view">View Case Study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="consumer b2b" onclick="showDetail('instant')">
+        <div class="case-img">⚡</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">Consumer</span><span class="tag">B2B</span><span class="tag impact">+22% Conversions</span></div>
+          <h3>Instant Discount &amp; Checkout Revamp</h3>
+          <p>Redesigned the checkout experience to surface personalized instant discounts at the right moment, boosting conversions for offer-applied transactions by 22%.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="case-metric-val">22%</div><div class="case-metric-label">Checkout uplift</div></div>
+            <div class="case-metric"><div class="case-metric-val">67%</div><div class="case-metric-label">Benefit redemption ↑</div></div>
+            <div class="case-metric"><div class="case-metric-val">32%</div><div class="case-metric-label">Marketing burn ↓</div></div>
+          </div>
+          <button class="btn-view">View Case Study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="consumer growth" onclick="showDetail('offers')">
+        <div class="case-img">🔍</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">Consumer</span><span class="tag">Offers</span><span class="tag impact">67% Redemption ↑</span></div>
+          <h3>Offer Discovery – Unified Offer Journey</h3>
+          <p>Built an end-to-end offer experience spanning discovery, application, benefit disbursal, and post-transaction flows with algorithmic user cohorting.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="case-metric-val">67%</div><div class="case-metric-label">User redemption ↑</div></div>
+            <div class="case-metric"><div class="case-metric-val">32%</div><div class="case-metric-label">Burn reduction</div></div>
+            <div class="case-metric"><div class="case-metric-val">15%</div><div class="case-metric-label">ROAS improvement</div></div>
+          </div>
+          <button class="btn-view">View Case Study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="growth" onclick="showDetail('pincode')">
+        <div class="case-img">🛒</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">Quick Commerce</span><span class="tag">Growth</span><span class="tag impact">35% AOV ↑</span></div>
+          <h3>Pincode Cart Incentivization</h3>
+          <p>Designed real-time, cart-context interventions — freebies, fee waivers, and steal deals — for PhonePe's Quick Commerce vertical to improve AOV and reduce abandonment.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="case-metric-val">35%</div><div class="case-metric-label">AOV increase</div></div>
+            <div class="case-metric"><div class="case-metric-val">60%</div><div class="case-metric-label">Cart abandonment ↓</div></div>
+            <div class="case-metric"><div class="case-metric-val">20%</div><div class="case-metric-label">Retention ↑</div></div>
+          </div>
+          <button class="btn-view">View Case Study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="growth" onclick="showDetail('milestone')">
+        <div class="case-img">🏆</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">Growth</span><span class="tag">Gamification</span><span class="tag impact">63% Completion</span></div>
+          <h3>Milestone Offers – Lifecycle &amp; Retention Engine</h3>
+          <p>Launched a gamified milestone system for tenants including PhonePe consumer and merchants, increasing CLTV by 17% and cutting merchant escalations by 85%.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="case-metric-val">63%</div><div class="case-metric-label">Completion rate</div></div>
+            <div class="case-metric"><div class="case-metric-val">17%</div><div class="case-metric-label">CLTV increase</div></div>
+            <div class="case-metric"><div class="case-metric-val">85%</div><div class="case-metric-label">Escalations ↓</div></div>
+          </div>
+          <button class="btn-view">View Case Study →</button>
+        </div>
+      </div>
+
+      <div class="case-card" data-cat="growth" onclick="showDetail('referral')">
+        <div class="case-img">🔗</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">Growth</span><span class="tag">Acquisition</span><span class="tag impact">5Mn+ Users/Month</span></div>
+          <h3>Referral Program – Viral Acquisition at Scale</h3>
+          <p>Architected a multi-tenant referral engine with fraud checks and feature-level referrals, acquiring 5Mn+ users/month at 23% lower CAC.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="case-metric-val">5Mn+</div><div class="case-metric-label">Users/month</div></div>
+            <div class="case-metric"><div class="case-metric-val">23%</div><div class="case-metric-label">CAC reduction</div></div>
+            <div class="case-metric"><div class="case-metric-val">1Mn+</div><div class="case-metric-label">Feature referrals/month</div></div>
+          </div>
+          <button class="btn-view">View Case Study →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DETAIL ═══════════ -->
+<div class="page" id="page-detail">
+  <div class="detail-page" id="detail-content"></div>
+</div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<div class="page" id="page-about">
+  <div class="about">
+    <div class="section-header"><h2>About Me</h2></div>
+    <div class="about-grid">
+      <div>
+        <div class="about-avatar">AA</div>
+        <div class="about-name">Ajay Avaghade</div>
+        <div class="about-role">Product Manager · PhonePe · Bangalore</div>
+        <div class="about-contact-item">📍 Bangalore, Karnataka</div>
+        <div class="about-contact-item">📱 +91 95615 58439</div>
+        <div class="about-contact-item"><a href="mailto:avaghadeajay009@gmail.com">avaghadeajay009@gmail.com</a></div>
+        <div class="about-contact-item" style="margin-top:4px;"><a href="https://linkedin.com/in/ajay-avaghade" target="_blank" style="color:var(--accent);text-decoration:none;">linkedin.com/in/ajay-avaghade ↗</a></div>
+      </div>
+      <div>
+        <h2>Data-driven PM.<br>Platform-scale thinker.</h2>
+        <p class="about-bio">4 years of experience scaling platform-level FinTech and growth products at India's leading digital payments ecosystem. I've managed a ₹100 Cr/year monetization portfolio and architected cross-vertical incentivization strategies spanning Payments, Payment Gateway, Quick Commerce (Pincode), and App Store ecosystems.<br><br>I efficiently managed a ₹1000+ Cr annual marketing budget for tenants across the group, deploying data-driven targeting models to reduce overall marketing burn by 32%. Proven track record of driving 11% YoY revenue growth, boosting checkout conversions by 30%, and acquiring 5000+ merchants through scalable B2B platform capabilities.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot">🏢</div>
+            <div class="tl-content">
+              <h4>Product Manager → Senior PM · PhonePe</h4>
+              <p>April 2022 – Present · Bangalore<br>Offers, Checkout, Merchant Growth, Monetization, Quick Commerce</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">🏦</div>
+            <div class="tl-content">
+              <h4>PM Intern (Founding Team) · Kotak Mahindra Bank</h4>
+              <p>April – June 2021 · Mumbai<br>Launched Kotak Cherry WealthTech platform · 100K+ downloads · Day-30 retention +26%</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">🎓</div>
+            <div class="tl-content">
+              <h4>MBA · IIM Indore</h4>
+              <p>2020 – 2022 · Campus winner Asian Paints Canvas B-School Competition · National finalist ITC Interrobang</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">💻</div>
+            <div class="tl-content">
+              <h4>B.Tech Computer Science · VNIT Nagpur</h4>
+              <p>2016 – 2020 · Education Minister Award – District Topper (10th &amp; 12th, Maharashtra State Board)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<div class="page" id="page-contact">
+  <div class="contact">
+    <h2>Let's work together.</h2>
+    <p>Whether you're looking for a PM who can translate complex data into sharp product decisions, or someone who's shipped at platform scale — I'd love to connect.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:avaghadeajay009@gmail.com">✉ Email Me</a>
+      <a class="contact-link" href="https://linkedin.com/in/ajay-avaghade" target="_blank">🔗 LinkedIn</a>
+      <a class="contact-link" href="tel:+919561558439">📱 +91 95615 58439</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const caseData = {
+  emi: {
+    title: 'EMI Subvention – Merchant Financing at Checkout',
+    tags: ['B2B', 'Payment Gateway', 'FinTech'],
+    company: 'PhonePe · Payment Gateway · 2022–Present',
+    figma: 'https://www.figma.com/proto/caR39KctY6vyERHvOVvKaM/EMI-Subvention?node-id=1-13165&t=a5OWbuxrKzQe2DIH-1',
+    figmaEmbed: 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FcaR39KctY6vyERHvOVvKaM%2FEMI-Subvention%3Fnode-id%3D1-13165%26t%3Da5OWbuxrKzQe2DIH-1',
+    figmaDesc: 'The prototype showcases the end-to-end merchant self-serve flow for configuring EMI subvention offers — from bank partner selection and offer parameterization to preview and go-live. Key screens highlight the intuitive dashboard that slashed go-live TAT from 2 days to 30 minutes.',
+    metrics: [{val:'5000+',label:'Merchants acquired'},{val:'30 min',label:'Offer go-live TAT'},{val:'2 days → 30 min',label:'TAT improvement'}],
+    situation: `PhonePe's Payment Gateway business was losing merchant acquisition deals to competitors because it lacked native EMI financing capabilities. Large-ticket e-commerce and offline merchants — electronics, jewellery, consumer durables — required bank-funded, zero-cost EMI (subvention) to convert price-sensitive shoppers. Without this, merchants had no incentive to switch payment gateways, leaving a high-margin segment untapped.`,
+    task: `As the PM responsible for merchant growth and payment gateway capabilities, I was tasked with designing and launching an EMI subvention product that would:<ul><li>Enable merchants to configure and go live with zero-cost EMI plans independently (self-serve)</li><li>Integrate with multiple bank partners to cover a wide range of card issuers</li><li>Reduce configuration turnaround time from 2 days (ops-heavy) to under 1 hour</li><li>Extend the embeddable console to other tenants (e.g., Indus AppStore) as a platform capability</li></ul>`,
+    action: `I led the end-to-end product design — from merchant discovery through checkout experience:<ul><li><strong>Merchant Self-Serve Dashboard:</strong> Designed an intuitive configuration console allowing merchants to select bank partners, set subvention parameters (tenure, max discount, eligible SKUs), preview the offer at checkout, and publish — without any ops involvement.</li><li><strong>Bank Partner API Integration:</strong> Worked with engineering to build a flexible adapter layer supporting multiple bank EMI APIs, abstracting complexity from merchants.</li><li><strong>Consumer Checkout Redesign:</strong> Revamped the checkout page to clearly surface EMI options with total cost breakdowns, reducing cognitive friction for shoppers.</li><li><strong>Platform Extension:</strong> Architected the merchant console as an embeddable widget, enabling tenants like the Indus AppStore to integrate EMI capabilities into their own offer engines.</li><li><strong>Fraud &amp; Risk Controls:</strong> Worked with risk teams to add eligibility rules and card BIN validation to prevent misuse.</li></ul>`,
+    result: `<ul><li>Directly enabled the Payment Gateway business to acquire <strong>5000+ new online and offline merchants</strong>, including large electronics and jewellery chains.</li><li>Slashed offer go-live TAT from <strong>2 days to just 30 minutes</strong>, allowing merchants to launch time-sensitive campaigns on demand.</li><li>The embeddable console extended to Indus AppStore, creating a new revenue stream for the platform.</li><li>Merchant self-serve adoption reached ~70% within 3 months of launch.</li></ul>`
+  },
+  instant: {
+    title: 'Instant Discount & Checkout Revamp',
+    tags: ['Consumer', 'B2B', 'Checkout'],
+    company: 'PhonePe · Consumer App · 2022–Present',
+    figma: 'https://www.figma.com/design/tNX5a0xOI6ytzu3D3MqMOy/Instant-Discount--Checkout?node-id=0-1&p=f&t=WnrQVcelgzj8IKLG-0',
+    figmaEmbed: 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FtNX5a0xOI6ytzu3D3MqMOy%2FInstant-Discount--Checkout%3Fnode-id%3D0-1%26p%3Df%26t%3DWnrQVcelgzj8IKLG-0',
+    figmaDesc: 'The design file illustrates the revamped checkout experience — with instant discount visibility, offer nudges, transparent savings breakdown, and the "best offer auto-applied" mechanic. Notice the shift from a cluttered coupon input to a proactive, personalized discount surface.',
+    metrics: [{val:'22%',label:'Checkout uplift'},{val:'67%',label:'Benefit redemption ↑'},{val:'32%',label:'Marketing burn ↓'}],
+    situation: `Despite PhonePe having a rich offer catalog, users were abandoning checkout at high rates because offers were buried in a separate section, required manual coupon code entry, and lacked real-time price transparency. The gap between "offer exists" and "user redeems offer" was costing both revenue and user trust. Meanwhile, the marketing team was spending ₹1000+ Cr annually on offers with declining ROAS.`,
+    task: `Redesign the checkout experience so that eligible instant discounts are surfaced proactively, applied with minimal friction, and communicated with full transparency — while simultaneously building the algorithmic layer to target offers only to high-intent users, reducing marketing burn without impacting redemption volume.`,
+    action: `<ul><li><strong>Offer Surface Redesign:</strong> Replaced the coupon input box with a dynamic "Best Offer" card auto-applied at checkout, showing exact savings, validity, and T&amp;C inline. Multiple A/B variants were tested using Figma designs.</li><li><strong>Propensity-to-Transact Model:</strong> Partnered with data science to build an ML model scoring users on likelihood to complete a transaction. High-intent users received premium offers; low-intent users received nudges — preserving margin.</li><li><strong>Offer Transparency Layer:</strong> Added a savings summary screen post-payment, reinforcing the value of using PhonePe and increasing repeat transaction intent.</li><li><strong>Merchant-Funded Discount Console:</strong> Built a self-serve tool for brands to configure instant discounts with real-time preview of how they appear at checkout.</li><li><strong>Cross-Vertical Rollout:</strong> Standardized the discount surface across Payments, Quick Commerce, and App Store checkouts.</li></ul>`,
+    result: `<ul><li><strong>22% uplift</strong> in successful checkouts for offer-applied transactions.</li><li><strong>67% increase</strong> in user benefit redemption across the offer catalog.</li><li><strong>32% reduction</strong> in overall marketing burn through intelligent offer cohorting.</li><li>Improved ROAS for top 500 brand partners by <strong>15%</strong> through better user-offer matching.</li></ul>`
+  },
+  offers: {
+    title: 'Offer Discovery – Unified Offer Journey',
+    tags: ['Consumer', 'Offers', 'Discovery'],
+    company: 'PhonePe · Consumer App · 2022–Present',
+    figma: 'https://www.figma.com/design/7TcbXa2ggvGxG4WT1pyqyx/Offers-Discovery---Checkout-revamp?node-id=0-1&p=f&t=9v7dzsvgDB6PIupG-0',
+    figmaEmbed: 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F7TcbXa2ggvGxG4WT1pyqyx%2FOffers-Discovery---Checkout-revamp%3Fnode-id%3D0-1%26p%3Df%26t%3D9v7dzsvgDB6PIupG-0',
+    figmaDesc: 'The design file showcases the full offer discovery journey — from the home-screen entry point and personalized offers carousel, through category-level filtering, to the offer detail page and checkout application. Key interactions include the "offers near me" contextual surface and the post-transaction disbursal confirmation screen.',
+    metrics: [{val:'67%',label:'Redemption increase'},{val:'32%',label:'Marketing burn ↓'},{val:'15%',label:'ROAS improvement'}],
+    situation: `PhonePe had hundreds of active offers across banks, brands, and categories, but users had no cohesive way to discover them. Offers were scattered across the home screen, merchant pages, and checkout — with no single source of truth. The result was low organic discovery, heavy reliance on push notifications (causing fatigue), and a massive gap between offer availability and actual redemption.`,
+    task: `Design and build a unified offer discovery experience that brings all relevant offers to users at the right moment — pre-transaction (intent phase), at-checkout (decision phase), and post-transaction (reinforcement phase) — while architecting an algorithmic layer to personalize offers at scale.`,
+    action: `<ul><li><strong>Offer Hub Design:</strong> Created a dedicated "Offers" section with category-level filtering (Bank Offers, Brand Cashbacks, Merchant Deals), a personalized "For You" carousel, and a "Near Me" contextual surface for location-based offers.</li><li><strong>End-to-End Journey Architecture:</strong> Mapped and redesigned all four touchpoints — Discovery → Application → Disbursal → Post-transaction confirmation — ensuring users could track their benefit from claim to credit.</li><li><strong>Propensity Model for Cohorting:</strong> Built ML-driven offer cohorting matching users to offers based on transaction history, category affinity, and payment method — reducing irrelevant impressions by 40%+.</li><li><strong>Offer Disbursal Transparency:</strong> Designed a "Savings Tracker" showing pending cashbacks, credited rewards, and upcoming offer expiries — reducing post-transaction confusion and support tickets.</li><li><strong>Partner Console:</strong> Extended the offer management dashboard to 500+ brand partners, enabling real-time offer publishing and performance visibility.</li></ul>`,
+    result: `<ul><li><strong>67% increase</strong> in user benefit redemption across the full offer catalog.</li><li><strong>32% reduction</strong> in marketing burn from the ₹1000 Cr annual budget.</li><li><strong>15% improvement in ROAS</strong> for top 500 brand partners through precision targeting.</li><li>Organic offer discovery (without push notification) increased by ~45%, reducing notification fatigue.</li></ul>`
+  },
+  pincode: {
+    title: 'Pincode Cart Incentivization',
+    tags: ['Quick Commerce', 'Growth', 'Cart'],
+    company: 'PhonePe · Pincode (Quick Commerce) · 2022–Present',
+    figma: null, figmaEmbed: null, figmaDesc: null,
+    metrics: [{val:'35%',label:'AOV increase'},{val:'60%',label:'Cart abandonment ↓'},{val:'20%',label:'Retention ↑'}],
+    situation: `Pincode, PhonePe's quick commerce vertical, was facing two key challenges: low Average Order Values (AOV) as users would place small, frequent orders, and high cart abandonment driven by delivery fee friction and insufficient purchase motivation at checkout.`,
+    task: `Design and launch a suite of real-time, cart-context incentives — including freebies, delivery fee waivers, and limited-time "steal deals" — that trigger dynamically based on cart value, item composition, and user segment.`,
+    action: `<ul><li><strong>Dynamic Cart Interventions:</strong> Designed in-cart nudges that appeared when users were ₹X away from unlocking a freebie or fee waiver — creating a compelling reason to add one more item.</li><li><strong>Steal Deals:</strong> Launched flash-sale mechanics for high-margin SKUs visible only within the cart, creating urgency without cluttering the discovery experience.</li><li><strong>Fee Waiver Thresholds:</strong> Implemented smart delivery fee waivers that activated at cart-value thresholds, reducing the #1 stated reason for abandonment.</li><li><strong>Personalization Layer:</strong> Used purchase history to show relevant freebie add-ons, increasing add-to-cart rates for suggested items.</li></ul>`,
+    result: `<ul><li><strong>35% increase in Average Order Value (AOV)</strong> within 2 months of launch.</li><li><strong>60% reduction in cart abandonment rates</strong>, primarily driven by the fee waiver mechanic.</li><li><strong>20% improvement in retention rate</strong>, as users formed habits around the freebie unlock mechanic.</li></ul>`
+  },
+  milestone: {
+    title: 'Milestone Offers – Lifecycle & Retention Engine',
+    tags: ['Growth', 'Gamification', 'Lifecycle'],
+    company: 'PhonePe · Cross-Vertical · 2022–Present',
+    figma: 'https://www.figma.com/design/y0FjmgBvHPW9aTS64cGIDP/Milestone?node-id=0-1&p=f&t=DRms9qJJLWUroPYx-0',
+    figmaEmbed: 'https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2Fy0FjmgBvHPW9aTS64cGIDP%2FMilestone%3Fnode-id%3D0-1%26p%3Df%26t%3DDRms9qJJLWUroPYx-0',
+    figmaDesc: 'The design file showcases the milestone journey experience — the progress tracker UI showing users how close they are to the next reward, the milestone configuration console for tenant admins, and the reward disbursal confirmation screens. Key screens highlight the gamified progress bar mechanic and the multi-step incentive flow that drove a 63% completion rate.',
+    metrics: [{val:'63%',label:'Completion rate'},{val:'17%',label:'CLTV increase'},{val:'85%',label:'Escalations ↓'}],
+    situation: `PhonePe's various verticals were struggling with mid-funnel drop-off — users who transacted once but didn't form habits, and merchants who onboarded but didn't achieve their target GMV. One-time discounts drove single transactions without building long-term loyalty. The platform needed a behaviour-shaping mechanism that could work across consumer and merchant contexts.`,
+    task: `Build a configurable milestone system that tenants (consumer app, merchants, Indus AppStore) could use to design multi-step incentive journeys — rewarding users and merchants progressively as they hit usage milestones, forming habits over time.`,
+    action: `<ul><li><strong>Milestone Engine Architecture:</strong> Designed a flexible, tenant-configurable engine where admins define milestone steps, rewards per step (cashback, voucher, badge), and user segments.</li><li><strong>Gamified Consumer UX:</strong> Built a progress-bar mechanic showing users how close they were to the next reward, driving daily return visits.</li><li><strong>Merchant Milestone Console:</strong> Extended the system to merchants — enabling milestone-based loyalty programs for their shoppers via the self-serve dashboard.</li><li><strong>Escalation Reduction:</strong> Clear milestone communication and reliable reward delivery eliminated a major source of support escalations.</li></ul>`,
+    result: `<ul><li><strong>63% user completion rate</strong> on consumer milestone journeys — well above industry benchmarks.</li><li><strong>23% increase in long-term merchant retention</strong> through milestone-based loyalty programs.</li><li><strong>17% increase in CLTV</strong> by shaping high-frequency transaction behaviour.</li><li><strong>85% reduction in merchant escalations</strong> related to offer disbursals.</li></ul>`
+  },
+  referral: {
+    title: 'Referral Program – Viral Acquisition at Scale',
+    tags: ['Growth', 'Acquisition', 'CAC'],
+    company: 'PhonePe · Cross-Vertical · APM Role · 2022',
+    figma: null, figmaEmbed: null, figmaDesc: null,
+    metrics: [{val:'5Mn+',label:'Users/month acquired'},{val:'23%',label:'CAC reduction'},{val:'1Mn+',label:'Feature referrals/month'}],
+    situation: `PhonePe was spending significantly on paid acquisition across channels with rising CAC. While the app had strong organic word-of-mouth, there was no structured mechanism to convert organic advocacy into measurable acquisition. Feature-level products (co-branded credit cards, lending) had no referral capability, missing a low-CAC growth lever.`,
+    task: `Design and launch a scalable, multi-tenant referral program with fraud controls — first at the app level, then extended to feature/product level for high-value verticals.`,
+    action: `<ul><li><strong>App-Level Referral Engine:</strong> Launched an invite-based referral program with tiered rewards. Designed UX for minimum friction — one-tap sharing via WhatsApp, UPI ID, or QR code.</li><li><strong>Fraud &amp; Quality Controls:</strong> Implemented device fingerprinting, SIM-swap detection, and transaction-based quality gates (reward paid only after referred user completes first transaction).</li><li><strong>Feature-Level Referral Extension:</strong> Architected referrals at the product level — enabling users to refer friends specifically to co-branded credit cards, lending products, and Pincode. Rewards customized per product based on LTV economics.</li><li><strong>Attribution &amp; Analytics:</strong> Built referral attribution dashboards (integrated with Appsflyer) giving the growth team real-time visibility into cohort quality and fraud flags.</li></ul>`,
+    result: `<ul><li>App-level referral acquired <strong>5Mn+ new users monthly</strong> at steady state.</li><li><strong>23% reduction in Customer Acquisition Cost (CAC)</strong> vs. paid channels for referred cohorts.</li><li>Feature-level referrals drove <strong>1Mn+ monthly activations</strong> for co-branded credit cards and lending products.</li><li>Referred user D30 retention matched organic cohorts — validating cohort quality.</li></ul>`
+  }
+};
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showDetail(id) {
+  const d = caseData[id];
+  if (!d) return;
+
+  const figmaBlock = d.figma ? `
+    <div class="figma-section">
+      <div class="figma-label">Figma Prototype / Design File</div>
+      <p class="figma-desc">${d.figmaDesc}</p>
+      <div class="figma-frame">
+        <iframe src="${d.figmaEmbed}" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <a class="figma-open" href="${d.figma}" target="_blank">Open full prototype in Figma ↗</a>
+    </div>
+  ` : '';
+
+  const metricsHTML = d.metrics.map(m => `
+    <div class="detail-metric">
+      <div class="detail-metric-val">${m.val}</div>
+      <div class="detail-metric-label">${m.label}</div>
+    </div>`).join('');
+
+  const tagsHTML = d.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+  document.getElementById('detail-content').innerHTML = `
+    <button class="back-btn" onclick="showPage('discover')">← Back to Case Studies</button>
+    <div class="detail-hero-tag">${tagsHTML}</div>
+    <h1 class="detail-title">${d.title}</h1>
+    <p class="detail-meta">${d.company}</p>
+    <div class="detail-metrics">${metricsHTML}</div>
+    ${figmaBlock}
+    <div class="star-section">
+      <div class="star-header">
+        <div class="star-icon star-S"><div class="star-letter">S</div><div class="star-word">Situation</div></div>
+        <h2 class="star-title">Context &amp; Background</h2>
+      </div>
+      <div class="star-content"><p>${d.situation}</p></div>
+    </div>
+    <hr class="star-divider">
+    <div class="star-section">
+      <div class="star-header">
+        <div class="star-icon star-T"><div class="star-letter">T</div><div class="star-word">Task</div></div>
+        <h2 class="star-title">The Problem I Owned</h2>
+      </div>
+      <div class="star-content">${d.task}</div>
+    </div>
+    <hr class="star-divider">
+    <div class="star-section">
+      <div class="star-header">
+        <div class="star-icon star-A"><div class="star-letter">A</div><div class="star-word">Action</div></div>
+        <h2 class="star-title">What I Built &amp; How</h2>
+      </div>
+      <div class="star-content">${d.action}</div>
+    </div>
+    <hr class="star-divider">
+    <div class="star-section">
+      <div class="star-header">
+        <div class="star-icon star-R"><div class="star-letter">R</div><div class="star-word">Result</div></div>
+        <h2 class="star-title">Impact &amp; Outcomes</h2>
+      </div>
+      <div class="star-content">${d.result}</div>
+    </div>`;
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-detail').classList.add('active');
+  document.getElementById('nav-discover').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function filterCases(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat.includes(cat)) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
