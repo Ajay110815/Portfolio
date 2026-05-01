@@ -397,6 +397,7 @@
     <div class="nav-links">
       <div class="nav-link active" id="nav-home" onclick="showPage('home')">Home</div>
       <div class="nav-link" id="nav-discover" onclick="showPage('discover')">Case Studies</div>
+      <div class="nav-link" id="nav-ai" onclick="showPage('ai')">AI Work</div>
       <div class="nav-link" id="nav-about" onclick="showPage('about')">About</div>
       <div class="nav-link" id="nav-contact" onclick="showPage('contact')">Contact</div>
     </div>
@@ -417,6 +418,7 @@
     </div>
     <div class="hero-cta">
       <button class="btn-primary" onclick="showPage('discover')">View Case Studies</button>
+      <button class="btn-ghost" onclick="showPage('ai')">🤖 AI Work</button>
       <button class="btn-ghost" onclick="showPage('about')">About Me</button>
     </div>
   </div>
@@ -432,6 +434,8 @@
       <div class="skill-pill">JIRA</div>
       <div class="skill-pill">Appsflyer</div>
       <div class="skill-pill">FinTech · Payments · Quick Commerce</div>
+      <div class="skill-pill">AI/ML Product Design</div>
+      <div class="skill-pill">LLM · Voice Agents</div>
     </div>
   </div>
 </div>
@@ -562,6 +566,7 @@
         <div class="about-contact-item">📱 +91 95615 58439</div>
         <div class="about-contact-item"><a href="mailto:avaghadeajay009@gmail.com">avaghadeajay009@gmail.com</a></div>
         <div class="about-contact-item" style="margin-top:4px;"><a href="https://linkedin.com/in/ajay-avaghade" target="_blank" style="color:var(--accent);text-decoration:none;">linkedin.com/in/ajay-avaghade ↗</a></div>
+        <div class="about-contact-item" style="margin-top:4px;"><a href="https://github.com/ajay-avaghade" target="_blank" style="color:var(--accent);text-decoration:none;">github.com/ajay-avaghade ↗</a></div>
       </div>
       <div>
         <h2>Data-driven PM.<br>Platform-scale thinker.</h2>
@@ -609,7 +614,64 @@
     <div class="contact-links">
       <a class="contact-link" href="mailto:avaghadeajay009@gmail.com">✉ Email Me</a>
       <a class="contact-link" href="https://linkedin.com/in/ajay-avaghade" target="_blank">🔗 LinkedIn</a>
+      <a class="contact-link" href="https://github.com/ajay-avaghade" target="_blank">🐙 GitHub</a>
       <a class="contact-link" href="tel:+919561558439">📱 +91 95615 58439</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ AI WORK ═══════════ -->
+<div class="page" id="page-ai">
+  <div class="discover">
+    <div class="section-header">
+      <h2>AI Work</h2>
+      <p>AI tools and agents I've built — shipping real products with LLMs, voice, and modern AI stacks.</p>
+    </div>
+
+    <div class="cases-grid">
+      <!-- AI Mock PM Interviewer -->
+      <div class="case-card" style="cursor:default;">
+        <div class="case-img" style="background:linear-gradient(135deg,#112040 0%,#1e2d50 100%);font-size:2.75rem;">🎙️</div>
+        <div class="case-body">
+          <div class="case-tags">
+            <span class="tag">Voice AI</span>
+            <span class="tag">LLM</span>
+            <span class="tag">Gradio</span>
+            <span class="tag impact">Live</span>
+          </div>
+          <h3>AI Mock Product Manager Interviewer</h3>
+          <p>A real-time voice conversational agent that conducts live Product Sense mock interviews. Dynamically generates PM case study questions, listens to your audio response, gives probing follow-up questions, and auto-generates a structured scorecard when the session ends.</p>
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="case-metric-val">Groq</div>
+              <div class="case-metric-label">Whisper STT + Llama 3 LLM</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-val">Edge-TTS</div>
+              <div class="case-metric-label">Real-time voice output</div>
+            </div>
+            <div class="case-metric">
+              <div class="case-metric-val">0-cost</div>
+              <div class="case-metric-label">Runs on Groq free tier</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+            <a class="btn-view" style="text-align:center;text-decoration:none;display:block;flex:1;" href="https://huggingface.co/spaces/ajay-avaghade/AI-Mock-Product-Manager-Interviewer" target="_blank">🚀 Try Live Demo</a>
+            <a class="btn-view" style="text-align:center;text-decoration:none;display:block;flex:1;" href="https://github.com/ajay-avaghade" target="_blank">📂 GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder card for future projects -->
+      <div class="case-card" style="cursor:default;opacity:0.5;border-style:dashed;">
+        <div class="case-img" style="font-size:2rem;color:var(--muted);">+</div>
+        <div class="case-body">
+          <div class="case-tags"><span class="tag">Coming Soon</span></div>
+          <h3>More projects in progress...</h3>
+          <p>Building more AI-powered tools. Follow along on GitHub.</p>
+          <a class="btn-view" style="text-align:center;text-decoration:none;display:block;" href="https://github.com/ajay-avaghade" target="_blank">🐙 github.com/ajay-avaghade</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
